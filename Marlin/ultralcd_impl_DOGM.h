@@ -188,17 +188,41 @@
   U8GLIB_SSD1306_128X64 u8g(DOGLCD_SCK, DOGLCD_MOSI, DOGLCD_CS, DOGLCD_A0);      // 8 stripes
   //U8GLIB_SSD1306_128X64_2X u8g(DOGLCD_SCK, DOGLCD_MOSI, DOGLCD_CS, DOGLCD_A0); // 4 stripes
 #elif ENABLED(U8GLIB_SSD1306)
+  #if ENABLED(ZONESTAR_OLED12864)
+   #if ENABLED(OLED_HW_IIC)
+   //IIC
+   U8GLIB_SSD1306_128X64 u8g(U8G_I2C_OPT_NONE|U8G_I2C_OPT_FAST);
+   #elif ENABLED(OLED_HW_SPI)
+   //HW SPI
+   U8GLIB_SSD1306_128X64 u8g(DOGLCD_CS, DOGLCD_A0);
+   #else
+   //SW SPI
+   U8GLIB_SSD1306_128X64 u8g(DOGLCD_SCK, DOGLCD_MOSI, DOGLCD_CS, DOGLCD_A0);
+   #endif
+  #else
   // Generic support for SSD1306 OLED I2C LCDs
   //U8GLIB_SSD1306_128X64 u8g(U8G_I2C_OPT_NONE | U8G_I2C_OPT_FAST);  // 8 stripes
   U8GLIB_SSD1306_128X64_2X u8g(U8G_I2C_OPT_NONE | U8G_I2C_OPT_FAST); // 4 stripes
+  #endif
 #elif ENABLED(MKS_12864OLED)
   // MKS 128x64 (SH1106) OLED I2C LCD
   U8GLIB_SH1106_128X64 u8g(DOGLCD_SCK, DOGLCD_MOSI, DOGLCD_CS, DOGLCD_A0);      // 8 stripes
   //U8GLIB_SH1106_128X64_2X u8g(DOGLCD_SCK, DOGLCD_MOSI, DOGLCD_CS, DOGLCD_A0); // 4 stripes
 #elif ENABLED(U8GLIB_SH1106)
+  #if ENABLED(ZONESTAR_OLED12864)
+   #if ENABLED(OLED_HW_IIC)
+   U8GLIB_SH1106_128X64 u8g(U8G_I2C_OPT_NONE|U8G_I2C_OPT_FAST);
+   #elif ENABLED(OLED_HW_SPI)//HW SPI   
+   U8GLIB_SH1106_128X64 u8g(DOGLCD_CS, DOGLCD_A0);
+   #else   //SW SPI
+   U8GLIB_SH1106_128X64 u8g(DOGLCD_SCK, DOGLCD_MOSI, DOGLCD_CS, DOGLCD_A0);	// SW SPI Com: SCK = 23, MOSI = 17, CS = 16, A0 = 25
+   #endif
+  //U8GLIB_SH1106_128X64_2X u8g(DOGLCD_SCK, DOGLCD_MOSI, DOGLCD_CS, DOGLCD_A0); // 4 stripes    
+  #else
   // Generic support for SH1106 OLED I2C LCDs
   //U8GLIB_SH1106_128X64 u8g(U8G_I2C_OPT_NONE | U8G_I2C_OPT_FAST);  // 8 stripes
   U8GLIB_SH1106_128X64_2X u8g(U8G_I2C_OPT_NONE | U8G_I2C_OPT_FAST); // 4 stripes
+  #endif
 #elif ENABLED(U8GLIB_SSD1309)
   // Generic support for SSD1309 OLED I2C LCDs
   U8GLIB_SSD1309_128X64 u8g(U8G_I2C_OPT_NONE | U8G_I2C_OPT_FAST);
@@ -302,8 +326,19 @@ void lcd_printPGM_utf(const char *str, uint8_t n=LCD_WIDTH) {
           if (right < LCD_PIXEL_WIDTH) u8g.drawBox(right, top, LCD_PIXEL_WIDTH - right, CUSTOM_BOOTSCREEN_BMPHEIGHT);
           if (bottom < LCD_PIXEL_HEIGHT) u8g.drawBox(0, bottom, LCD_PIXEL_WIDTH, LCD_PIXEL_HEIGHT - bottom);
         #endif
+		    #if ENABLED(SHOW_VERSION_ONBOOT)           
+			    lcd_setFont(FONT_MENU);
+		        u8g.drawStr(0, u8g.getHeight() + 5 - (DOG_CHAR_HEIGHT)*3/2, STRING_FIRMWARE_VERSION);
+			    u8g.drawStr(0, u8g.getHeight() + 5 - (DOG_CHAR_HEIGHT)*1/2, SHORT_BUILD_VERSION);
+		    #endif
       } while (u8g.nextPage());
+	  #if 0
       safe_delay(CUSTOM_BOOTSCREEN_TIMEOUT);
+	  #else
+	  safe_delay(500);
+	  card.initsd();
+	  safe_delay(500);
+	  #endif
     }
 
   #endif // SHOW_CUSTOM_BOOTSCREEN
@@ -356,7 +391,7 @@ static void lcd_implementation_init() {
     OUT_WRITE(LCD_BACKLIGHT_PIN, HIGH);
   #endif
 
-  #if !defined(LCD_RESET_PIN) && (ENABLED(MKS_12864OLED) || ENABLED(MKS_12864OLED_SSD1306))
+  #if !defined(LCD_RESET_PIN) && (ENABLED(MKS_12864OLED) || ENABLED(MKS_12864OLED_SSD1306)) || ENABLED(ZONESTAR_OLED12864)
     #define LCD_RESET_PIN LCD_PINS_RS
   #endif
 

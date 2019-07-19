@@ -64,6 +64,8 @@
 #define BOARD_MKS_GEN_13        47    // MKS GEN v1.3 or 1.4
 #define BOARD_MKS_GEN_L         53    // MKS GEN L
 #define BOARD_ZRIB_V20          504   // zrib V2.0 control board (Chinese knock off RAMPS replica)
+#define	BOARD_ZRIB       		    504   // Base on RAMPS 1.4 (Power outputs: Hotend, Fan, Bed)
+#define	BOARD_ZRIBV6       		  506   // Base on RAMPS 1.4 (Power outputs: Hotend, Fan, Bed)
 #define BOARD_FELIX2            37    // Felix 2.0+ Electronics Board (RAMPS like)
 #define BOARD_RIGIDBOARD        42    // Invent-A-Part RigidBoard
 #define BOARD_RIGIDBOARD_V2     52    // Invent-A-Part RigidBoard V2
@@ -126,6 +128,7 @@
 #define BOARD_STB_11            64    // STB V1.1
 #define BOARD_AZTEEG_X1         65    // Azteeg X1
 #define BOARD_ANET_10           69    // Anet 1.0 (Melzi clone)
+#define	BOARD_MELZI_ZONESTAR	 601	  // ZONESTAR Melzi Board with ATmega1284P
 
 //
 // Other ATmega644P, ATmega644, ATmega1284P
@@ -142,6 +145,7 @@
 #define BOARD_OMCA_A            90    // Alpha OMCA board
 #define BOARD_OMCA              91    // Final OMCA board
 #define BOARD_SETHI             20    // Sethi 3D_1
+#define	BOARD_ZMIB       		   507    // ZONESTAR ZMIB
 
 //
 // Teensyduino - AT90USB1286, AT90USB1286P

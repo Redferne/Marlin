@@ -110,6 +110,10 @@
   #include "pins_MKS_GEN_L.h"         // ATmega1280, ATmega2560                     env:megaatmega1280 env:megaatmega2560
 #elif MB(ZRIB_V20)
   #include "pins_ZRIB_V20.h"          // ATmega1280, ATmega2560                     env:megaatmega1280 env:megaatmega2560 (MKS_GEN_13)
+#elif MB(ZRIB)
+  #include "pins_ZRIB.h"          	  // ATmega1280, ATmega2560 (MKS_13)
+#elif MB(ZRIBV6)
+  #include "pins_ZRIB_V6.h"           // ATmega2560
 #elif MB(FELIX2)
   #include "pins_FELIX2.h"            // ATmega1280, ATmega2560                     env:megaatmega1280 env:megaatmega2560
 #elif MB(RIGIDBOARD)
@@ -213,7 +217,8 @@
   #include "pins_STB_11.h"            // ATmega644P, ATmega1284P                    env:sanguino_atmega644p env:sanguino_atmega1284p
 #elif MB(AZTEEG_X1)
   #include "pins_AZTEEG_X1.h"         // ATmega644P, ATmega1284P                    env:sanguino_atmega644p env:sanguino_atmega1284p
-
+#elif MB(MELZI_ZONESTAR)
+ #include "pins_MELZI_ZONESTAR.h"         // ATmega644P, ATmega1284P
 //
 // Other ATmega644P, ATmega644, ATmega1284P
 //
@@ -242,6 +247,10 @@
   #include "pins_ANET_10.h"           // ATmega1284P                                env:sanguino_atmega1284p
 #elif MB(SETHI)
   #include "pins_SETHI.h"             // ATmega644P, ATmega644, ATmega1284P         env:sanguino_atmega644p env:sanguino_atmega1284p
+#elif MB(ZMIB)
+  #include "pins_ZMIB.h"          	  // ATmega644P, ATmega1284P
+#elif MB(BOARD_ZMIB)
+  #include "pins_ZMIB.h"          	  // ATmega644P, ATmega1284P
 
 //
 // Teensyduino - AT90USB1286, AT90USB1286P

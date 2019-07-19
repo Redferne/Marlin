@@ -98,6 +98,15 @@
 #if ANY_THERMISTOR_IS(55) // 100k ATC Semitec 104GT-2 (Used on ParCan) (WITH 1kohm RESISTOR FOR PULLUP, R9 ON SANGUINOLOLU! NOT FOR 4.7kohm PULLUP! THIS IS NOT NORMAL!)
   #include "thermistortable_55.h"
 #endif
+#if ANY_THERMISTOR_IS(56) // 100k beta 3950 1% thermistor (4.7k pullup) ZONESTAR HOTEND
+  #include "thermistortable_56.h"
+#endif
+#if ANY_THERMISTOR_IS(57) // 100k beta 3950 1% thermistor (4.7k pullup) ZONESTAR HOTBED 
+  #include "thermistortable_57.h"
+#endif
+#if ANY_THERMISTOR_IS(58) // 100k beta 3950 1% thermistor (4.7k pullup) for ZA6
+  #include "thermistortable_58.h"
+#endif
 #if ANY_THERMISTOR_IS(60) // Maker's Tool Works Kapton Bed Thermistor
   #include "thermistortable_60.h"
 #endif

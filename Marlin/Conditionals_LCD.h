@@ -134,6 +134,53 @@
 
   #define MINIPANEL
 
+  #elif ENABLED(ZONESTAR_LCD2004_ADCKEY)
+    #undef  DOGLCD
+    #define ULTRA_LCD   // Character based
+    #define REPRAPWORLD_KEYPAD
+    #define REPRAPWORLD_KEYPAD_MOVE_STEP 10.0
+    #define ADC_KEYPAD	
+    #define ADC_KEY_NUM 8	
+    #define ULTIPANEL
+	
+	// this helps to implement ADC_KEYPAD menus
+    #define ENCODER_PULSES_PER_STEP 	1
+    #define ENCODER_STEPS_PER_MENU_ITEM 1
+    #define ENCODER_FEEDRATE_DEADZONE 	2
+    #define REVERSE_MENU_DIRECTION
+	#define SD_DETECT_INVERTED
+	
+  #elif ENABLED(ZONESTAR_LCD2004_KNOB)
+    #undef  DOGLCD
+    #define ULTRA_LCD   // Character based
+    #define REPRAP_DISCOUNT_SMART_CONTROLLER
+	//#define REVERSE_ENCODER_DIRECTION
+	//#define	REVERSE_MENU_DIRECTION
+	 #define SD_DETECT_INVERTED
+	 
+  #elif ENABLED(ZONESTAR_LCD12864)
+    #define DOGLCD      // Full graphics display
+    #define REPRAP_DISCOUNT_SMART_CONTROLLER
+    #define U8GLIB_ST7920
+	#define SPEAKER		//USE passive beeper
+	#if DISABLED(REVERSE_ENCODER_DIRECTION)
+	#define REVERSE_ENCODER_DIRECTION
+	#endif
+
+  #elif ENABLED(ZONESTAR_OLED12864)
+    #define DOGLCD      		// Full graphics display
+	#define REPRAP_DISCOUNT_SMART_CONTROLLER
+	//#define	U8GLIB_SSD1306	// 0.96 INCH
+	#define	U8GLIB_SH1106		// 1.3 INCH	
+	#define DEFAULT_LCD_CONTRAST 128
+    #define LCD_CONTRAST_MIN 64
+    #define LCD_CONTRAST_MAX 255
+	#if ((MOTHERBOARD == BOARD_ZMIB) && (USE_SOFTWARE_SPI == 0))
+	#define 	OLED_HW_SPI
+	#endif
+	#if DISABLED(REVERSE_ENCODER_DIRECTION)
+	#define REVERSE_ENCODER_DIRECTION
+	#endif	
 #endif
 
 #if ENABLED(MAKRPANEL) || ENABLED(MINIPANEL)
@@ -356,6 +403,7 @@
    || ENABLED(VIKI2) \
    || ENABLED(miniVIKI) \
    || ENABLED(ELB_FULL_GRAPHIC_CONTROLLER) \
+   || ENABLED(ZONESTAR_OLED12864)	\
   )
 
   #if HAS_LCD_CONTRAST

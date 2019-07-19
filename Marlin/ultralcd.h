@@ -176,7 +176,17 @@
       #define KEYPAD_EN_C EN_REPRAPWORLD_KEYPAD_F1
     #endif
     #define REPRAPWORLD_KEYPAD_MOVE_HOME    (buttons_reprapworld_keypad & KEYPAD_HOME)
+	#if ENABLED(ZONESTAR_LCD2004_ADCKEY)
+	#define REPRAPWORLD_KEYPAD_MOVE_MENU    ((buttons_reprapworld_keypad & KEYPAD_EN_C) || (buttons_reprapworld_keypad & EN_REPRAPWORLD_KEYPAD_RIGHT))
+	#else
     #define REPRAPWORLD_KEYPAD_MOVE_MENU    (buttons_reprapworld_keypad & KEYPAD_EN_C)
+	#endif
+
+    #if BUTTON_EXISTS(ENC)
+      #define LCD_CLICKED ((buttons & EN_C) || REPRAPWORLD_KEYPAD_MOVE_MENU)
+    #else
+      #define LCD_CLICKED REPRAPWORLD_KEYPAD_MOVE_MENU
+    #endif
 
     #define REPRAPWORLD_KEYPAD_PRESSED      (buttons_reprapworld_keypad & ( \
                                               EN_REPRAPWORLD_KEYPAD_F3 | \
@@ -189,8 +199,7 @@
                                               EN_REPRAPWORLD_KEYPAD_LEFT) \
                                             )
 
-  #endif
-
+    #endif
   #if ENABLED(AUTO_BED_LEVELING_UBL) || ENABLED(G26_MESH_VALIDATION)
     bool is_lcd_clicked();
     void wait_for_release();

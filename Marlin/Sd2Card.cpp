@@ -313,6 +313,14 @@ bool Sd2Card::init(uint8_t sckRateID, pin_t chipSelectPin) {
   // set pin modes
   pinMode(chipSelectPin_, OUTPUT);
   chipSelectHigh();
+
+  #if ENABLED(ZONESTAR_OLED12864)
+  if(chipSelectPin_ != DOGLCD_CS){
+	  SET_OUTPUT(DOGLCD_CS);
+  	WRITE(DOGLCD_CS, HIGH);
+  }
+  #endif
+  
   SET_INPUT(SPI_MISO_PIN);
   SET_OUTPUT(SPI_MOSI_PIN);
   SET_OUTPUT(SPI_SCK_PIN);
