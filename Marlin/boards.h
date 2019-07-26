@@ -65,6 +65,7 @@
 #define BOARD_MKS_GEN_L         53    // MKS GEN L
 #define BOARD_ZRIB_V20          504   // zrib V2.0 control board (Chinese knock off RAMPS replica)
 #define	BOARD_ZRIB       		    504   // Base on RAMPS 1.4 (Power outputs: Hotend, Fan, Bed)
+#define	BOARD_ZRIB_V31  		    508   // Base on RAMPS 1.4 (Power outputs: Hotend, Hotend, Fan, Bed)
 #define	BOARD_ZRIBV6       		  506   // Base on RAMPS 1.4 (Power outputs: Hotend, Fan, Bed)
 #define BOARD_FELIX2            37    // Felix 2.0+ Electronics Board (RAMPS like)
 #define BOARD_RIGIDBOARD        42    // Invent-A-Part RigidBoard

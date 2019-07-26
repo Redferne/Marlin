@@ -11,7 +11,8 @@ http://www.zonestar3d.com/
 //Choose one printer model from the model list
 //about the model list, please see the "modellist.h" file
 *********************************************************************************************************/
-#define	MODEL_NUMBER		Z6
+#define	MODEL_NUMBER		P802NR2
+#define	BLTOUCH
 /*********************************************************************************************************/
 //common setting for all of model
 //Some of the settings may be covered behind
@@ -20,7 +21,6 @@ http://www.zonestar3d.com/
 #define	SHOW_ZONESTAR_LOGO
 #define	INDIVIDUAL_AXIS_HOMING_MENU
 //#define	SPINDLE_LASER_ENABLE
-//#define	BLTOUCH
 
 /**
  * LCD LANGUAGE
@@ -833,6 +833,82 @@ Setting for special model
 //Filament run out detection
 #define FIL_RUNOUT_PIN 		58  //E1_SW_PIN
 #define FIL_RUNOUT2_PIN 	 2  //X_MAX_PIN
+
+/*********************************************************************************************************
+Setting for special model
+*********************************************************************************************************/
+#elif(MODEL_NUMBER == P802NR2)
+#define CUSTOM_MACHINE_NAME 		  "P802NR2"
+#define	STRING_FIRMWARE_VERSION		"V4.1"
+#define	_FIRMWARE_RELEASE_DATE_		"2019-07-26"
+#define MOTHERBOARD 			        BOARD_ZRIB_V31
+#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+
+#define	EXTRUDERS			       2
+#define INVERT_X_DIR 			true
+#define INVERT_Y_DIR 			true
+#define INVERT_Z_DIR 		 false
+#define	BED_SIZE 			     220
+#define	MAX_PRINT_HEIGHT	 230
+#define X_MIN_POS					 -41
+#define Y_MIN_POS 					-3
+#define Z_MIN_POS 					 0
+#define	ADJUST_MIN_POS
+//#define DISABLE_BEDLEVELING_SENSOR
+
+#define	X_STEPS_PERMM			  80
+#define	Y_STEPS_PERMM			  80
+#define	Z_STEPS_PERMM			 400
+#define	E_STEPS_PERMM			  80
+#define	MAX_ACC_X			    2000
+#define	MAX_ACC_Y			    2000
+#define	MAX_ACC_Z			     100
+
+#define	PTFE_TUBE_LENGTH	 400
+
+#define DEFAULT_Kp          12
+#define DEFAULT_Ki         0.4
+#define DEFAULT_Kd          86
+
+//Filament run out detection
+//#define FIL_RUNOUT_PIN 		58//E0_SW_PIN
+//#define FIL_RUNOUT2_PIN 		59//E1_SW_PIN
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#elif(MODEL_NUMBER == Z5R2_ZRIBV6)
+//Z5 2nd version, LCD12864 and knob keypad, ZRIBV6 control board, Z-IN-2-OUT hotend
+#define CUSTOM_MACHINE_NAME			"Z5SR2_ZRIBV6"
+#define	STRING_FIRMWARE_VERSION		"V1.1"
+#define	_FIRMWARE_RELEASE_DATE_		"2018-12-20"
+#define MOTHERBOARD 				BOARD_ZRIBV6
+#define ZONESTAR_LCD12864
+#define	EXTRUDERS					2
+
+#define INVERT_X_DIR 				true
+#define INVERT_Y_DIR 				false
+#define INVERT_Z_DIR 				false
+#define	BED_SIZE 					220
+#define	MAX_PRINT_HEIGHT			230
+#define X_MIN_POS 					-20
+#define Y_MIN_POS 					0
+#define Z_MIN_POS 					0
+#define	ADJUST_MIN_POS
+#define DISABLE_BEDLEVELING_SENSOR
+
+#define	X_STEPS_PERMM				80
+#define	Y_STEPS_PERMM				80
+#define	Z_STEPS_PERMM				400
+#define	E_STEPS_PERMM				80
+#define	MAX_ACC_X					2000
+#define	MAX_ACC_Y					2000
+#define	MAX_ACC_Z					100
+
+#define	PTFE_TUBE_LENGTH			400
+//Filament run out detection
+#define FIL_RUNOUT_PIN 				58//E0_SW_PIN
+#define FIL_RUNOUT2_PIN 			59//E1_SW_PIN
+
 
 #endif
 /*********************************************************************************************************
